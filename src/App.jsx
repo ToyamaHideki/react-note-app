@@ -24,7 +24,6 @@ function App() {
     };
 
     setNotes([...notes, newNote]);
-    console.log(notes);
   };
 
   /*****************************************
@@ -35,6 +34,32 @@ function App() {
     setNotes(filterNotes);
   };
 
+    /*****************************************
+   *        アクティブな情報を取り出す　          *
+   *******************************************/
+  const getActiveNote = () =>{
+      return notes.find((note) => note.id === activeNote);
+  }
+
+    /*****************************************
+   *       　　　データの更新を行う 　　          *
+   *******************************************/
+  const onUpdateNote = (updatedNote) => {
+    // 修正された新しいノート配列を返す。
+    const updatedNotesArray = notes.map((note) => {
+      if(note.id === updatedNote.id){
+        // 更新したデータのみ新しい内容で保存する
+          return updatedNote;
+      }else{
+        // 更新していないデータはそのまま返す。
+        return note;
+      }
+    });
+
+    // 更新したデータを格納する。
+    setNotes(updatedNotesArray);
+  }
+
   return (
     <div className="App">
       <Sidebar
@@ -44,7 +69,11 @@ function App() {
         activeNote={activeNote}
         setActiveNote={setActiveNote}
       />
-      <Main />
+      {/* 情報を一つ抽出して受けわたす際に発火させる必要あり。 */}
+      <Main activeNote={getActiveNote()}
+            onUpdateNote={onUpdateNote}
+            
+      />
     </div>
   );
 }

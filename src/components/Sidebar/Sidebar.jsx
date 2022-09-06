@@ -9,9 +9,8 @@ const Sidebar = ({onAddNote,onDeleteNote,notes,activeNote,setActiveNote}) => {
         </div>
         <div className="sidebar__notes">
         {notes.map((note) => (
-            
-            <div className={`sidebar__note ${note.id === activeNote && "active"}`} key={note.id} onClick={() => setActiveNote(note.id)}>
-
+            // id が一致した場合にクラス名が付与される仕組み
+            <div className={`sidebar__note ${note.id === activeNote && "active"}`} key={note.id} onClick={() => {setActiveNote(note.id)}}>
             <div className="sidebar__noteTitle">
                 <strong>{note.title}</strong>
                 <button onClick={() => onDeleteNote(note.id)}>DELETE</button>
