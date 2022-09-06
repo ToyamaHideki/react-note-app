@@ -5,8 +5,12 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import uuid from "react-uuid";
 
 function App() {
+
+  // 複数のノートを配列として格納
   const [notes, setNotes] = useState([]);
+  // 選択されたオブジェクトのIDを保持する。
   const [activeNote, setActiveNote] = useState(false);
+
 
   /*****************************************
    *        ノートを追加する処理
