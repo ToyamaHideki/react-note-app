@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Main from "./components/Main/Main";
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -7,9 +7,23 @@ import uuid from "react-uuid";
 function App() {
 
   // 複数のノートを配列として格納
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(JSON.parse(localStorage.getItem("notes")) || []);
   // 選択されたオブジェクトのIDを保持する。
   const [activeNote, setActiveNote] = useState(false);
+
+  useEffect(() => {
+  // リロードした時最初のデータにフォーカスを当てる
+  // 配列が空の場合にエラーが吐かれるためIFで回避
+    setActiveNote(notes.length === 0 ? false : notes[0].id);
+  },[]);
+
+
+
+
+  useEffect(() => {
+    // 第二引数のNotesに更新があった場合にローカルストレージに保存を加える
+    localStorage.setItem("notes", JSON.stringify(notes));
+  },[notes]);
 
 
   /*****************************************
@@ -18,7 +32,7 @@ function App() {
   const onAddNote = () => {
     const newNote = {
       id: uuid(),
-      title: "",
+      title:"",
       content:"",
       modDate: Date.now(),
     };
@@ -55,6 +69,7 @@ function App() {
         return note;
       }
     });
+
 
     // 更新したデータを格納する。
     setNotes(updatedNotesArray);

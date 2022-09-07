@@ -7,6 +7,11 @@ const Sidebar = ({
   activeNote,
   setActiveNote,
 }) => {
+
+    const sortedNotes = notes.sort((a,b) => b.modDate - a.modDate)
+
+
+
   return (
     <div className="sidebar">
       <div className="sidebar__header">
