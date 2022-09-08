@@ -34,8 +34,15 @@ textarea {
   resize: none;
 }
 .main__noteEdit input{
-  height: 50px;
-  font-size: 1.5rem;
+  height: 1.5rem;
+  font-size: 1.3rem;
+  border-radius: 10px;
+  box-shadow: 11px 13px 24px -16px rgba(0,0,0,0.6);
+}
+.main__noteEdit textarea{
+  border-radius: 10px;
+  box-shadow: 11px 13px 24px -16px rgba(0,0,0,0.6);
+
 }
 
 .main__notePreview {
@@ -98,6 +105,15 @@ button {
   border:1px solid #ddd;
   transition: all 0.3s;
 }
+.sidebar__noteTitle_button{
+  width: 10%;
+}
+.sidebar__noteTitle_strong{
+  width: 90%;
+  overflow: hidden;
+}
+
+
 .sidebar__note.active.sidebar__noteDelete{
   background-color: red;
   animation: deleteAnimation forwards .5s ease;
@@ -127,8 +143,9 @@ button {
   overflow:hidden;
 }
 .sidebar__note p {
-  margin: 10px 0;
-
+  overflow: hidden;
+  margin: 0;
+  /* margin: 10px 0; */
 }
 
 .sidebar__note small {

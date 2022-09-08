@@ -44,15 +44,17 @@ const Sidebar = ({
             }}
           >
             <div className="sidebar__noteTitle">
-              <strong>{note.title}</strong>
-              <IconContext.Provider
-                value={{ color: "black", className: "delete_icon" }}
-              >
-                {/* <button onClick={() => {setTimeout(() => onDeleteNote(note.id),4000)}}> */}
-                <button onClick={() => onDeleteAction(note)}>
-                  <TiBackspaceOutline />
-                </button>
-              </IconContext.Provider>
+
+              <div className="sidebar__noteTitle_strong">
+                <strong>{note.title}</strong>
+              </div>
+
+              <div className="sidebar__noteTitle_button">
+                <IconContext.Provider value={{ color: "black", className: "delete_icon" }}>
+                  <button onClick={() => onDeleteAction(note)}><TiBackspaceOutline /></button>
+                </IconContext.Provider>
+              </div>
+
             </div>
             <div className="sidebar__noteContent">
               <p>{note.content}</p>
