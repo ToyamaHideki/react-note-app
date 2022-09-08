@@ -35,6 +35,7 @@ function App() {
       title:"",
       content:"",
       modDate: Date.now(),
+      state: false,
     };
 
     setNotes([...notes, newNote]);
@@ -68,7 +69,9 @@ function App() {
         // 更新していないデータはそのまま返す。
         return note;
       }
+     
     });
+    console.log(updatedNotesArray);
 
 
     // 更新したデータを格納する。
@@ -83,6 +86,7 @@ function App() {
         notes={notes}
         activeNote={activeNote}
         setActiveNote={setActiveNote}
+        onUpdateNote={onUpdateNote}
       />
       {/* 情報を一つ抽出して受けわたす際に発火させる必要あり。 */}
       <Main activeNote={getActiveNote()}
